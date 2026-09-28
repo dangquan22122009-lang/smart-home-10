@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SMART HOME 10 - Ngôi nhà thông minh</title>
+<style>
+:root{--bg:#07111f;--panel:#0e1b2e;--panel2:#13243b;--text:#eef6ff;--muted:#9fb1c7;--accent:#53b7ff;--green:#4ade80;--danger:#ff6b6b}
+*{box-sizing:border-box}body{margin:0;font-family:Inter,system-ui,Arial,sans-serif;background:linear-gradient(135deg,#07111f,#10233c);color:var(--text)}
+header{padding:28px 6%;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #ffffff14;position:sticky;top:0;background:#07111feF;backdrop-filter:blur(12px);z-index:5}
+.logo{font-weight:800;font-size:22px}.logo span{color:var(--accent)}nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:14px}nav a:hover{color:#fff}
+.hero{padding:65px 6% 35px;max-width:1200px;margin:auto}.badge{display:inline-block;padding:7px 12px;border-radius:99px;background:#53b7ff18;color:#79c9ff;font-size:13px}.hero h1{font-size:clamp(36px,6vw,68px);line-height:1.02;margin:18px 0 12px}.hero p{max-width:700px;color:var(--muted);font-size:17px;line-height:1.7}
+.btn{border:0;border-radius:12px;padding:12px 18px;background:var(--accent);color:#04101d;font-weight:800;cursor:pointer}.btn.secondary{background:#ffffff10;color:#fff;border:1px solid #ffffff18}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin:28px 0}.stat{background:var(--panel);border:1px solid #ffffff10;border-radius:18px;padding:18px}.stat small{color:var(--muted)}.stat strong{display:block;font-size:25px;margin-top:6px}
+section{max-width:1200px;margin:30px auto;padding:0 6%}.section-title{font-size:28px;margin-bottom:18px}
+.house{background:var(--panel);border:1px solid #ffffff10;border-radius:24px;padding:18px;overflow:hidden}.floor{position:relative;min-height:500px;background:#dce9f2;border-radius:18px;color:#172333;padding:20px;display:grid;grid-template-columns:1.15fr .85fr;grid-template-rows:1fr 1fr;gap:12px}
+.room{background:#f7fbff;border:3px solid #aabccc;border-radius:10px;padding:16px;position:relative;box-shadow:inset 0 0 0 2px #fff}.room h3{margin:0 0 10px;font-size:16px}.device{background:#edf4f8;border-radius:12px;padding:11px;margin-top:9px;display:flex;justify-content:space-between;align-items:center;gap:8px}.device span{font-size:13px}
+.switch{width:46px;height:25px;border-radius:99px;background:#9baab7;border:0;padding:3px;cursor:pointer}.switch i{display:block;width:19px;height:19px;border-radius:50%;background:white;transition:.2s}.switch.on{background:#35b96b}.switch.on i{transform:translateX(21px)}
+.info{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-top:18px}.card{background:var(--panel);border:1px solid #ffffff10;border-radius:18px;padding:20px}.card h3{margin-top:0}.card p,.card li{color:var(--muted);line-height:1.65}.modes{display:flex;gap:10px;flex-wrap:wrap}.mode{background:#ffffff0c;color:#fff;border:1px solid #ffffff15;padding:11px 14px;border-radius:12px;cursor:pointer}.mode:hover{border-color:var(--accent)}
+.alert{padding:13px;border-radius:12px;background:#4ade8015;color:#8ff0b0;border:1px solid #4ade8030;margin-top:12px}.alert.warning{background:#ffb02015;color:#ffd27a;border-color:#ffb02035}
+.calc{display:grid;grid-template-columns:1fr 1fr;gap:15px}.calc label{display:block;color:var(--muted);font-size:13px;margin-bottom:6px}.calc input{width:100%;padding:12px;border-radius:10px;border:1px solid #ffffff18;background:#091626;color:white}.result{margin-top:15px;font-size:18px}.result b{color:#7dccff}
+footer{text-align:center;color:var(--muted);padding:45px 6%;font-size:13px}
+@media(max-width:760px){header{padding:18px 5%}nav{display:none}.stats,.info,.calc{grid-template-columns:1fr}.floor{grid-template-columns:1fr;grid-template-rows:auto;min-height:0}.hero{padding-top:40px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="logo">SMART<span>HOME</span> 10</div>
+  <nav><a href="#home">Trang chủ</a><a href="#control">Điều khiển</a><a href="#knowledge">Kiến thức</a></nav>
+</header>
+
+<main id="home">
+<section class="hero">
+  <span class="badge">Sản phẩm học tập • Công nghệ + Vật lí + Tin học</span>
+  <h1>Ngôi nhà<br>thông minh</h1>
+  <p>Một mô phỏng tương tác giúp tìm hiểu cách cảm biến, thiết bị điện và phần mềm có thể phối hợp để tạo nên một ngôi nhà tiện nghi, an toàn và tiết kiệm năng lượng.</p>
+  <button class="btn" onclick="document.querySelector('#control').scrollIntoView({behavior:'smooth'})">Khám phá ngôi nhà →</button>
+  <div class="stats">
+    <div class="stat"><small>Nhiệt độ</small><strong id="temp">27°C</strong></div>
+    <div class="stat"><small>Độ ẩm</small><strong>63%</strong></div>
+    <div class="stat"><small>Thiết bị đang bật</small><strong id="count">2</strong></div>
+  </div>
+</section>
+
+<section id="control">
+<h2 class="section-title">🏠 Bảng điều khiển ngôi nhà</h2>
+<div class="house">
+<div class="floor">
+  <div class="room">
+    <h3>🛋️ Phòng khách</h3>
+    <div class="device"><span>💡 Đèn trần</span><button class="switch on" onclick="toggle(this)"><i></i></button></div>
+    <div class="device"><span>📺 TV</span><button class="switch" onclick="toggle(this)"><i></i></button></div>
+    <div class="device"><span>🌡️ Điều hòa</span><button class="switch on" onclick="toggle(this)"><i></i></button></div>
+  </div>
+  <div class="room">
+    <h3>🛏️ Phòng ngủ</h3>
+    <div class="device"><span>💡 Đèn ngủ</span><button class="switch" onclick="toggle(this)"><i></i></button></div>
+    <div class="device"><span>🪟 Rèm cửa</span><button class="switch" onclick="toggle(this)"><i></i></button></div>
+  </div>
+  <div class="room">
+    <h3>🍳 Nhà bếp</h3>
+    <div class="device"><span>💡 Đèn bếp</span><button class="switch" onclick="toggle(this)"><i></i></button></div>
+    <div class="device"><span>🔥 Cảnh báo nhiệt</span><button class="switch" onclick="toggle(this)"><i></i></button></div>
+  </div>
+  <div class="room">
+    <h3>🚪 Cửa & an ninh</h3>
+    <div class="device"><span>🔐 Khóa cửa chính</span><button class="switch on" onclick="toggle(this)"><i></i></button></div>
+    <div class="device"><span>🚨 Báo động</span><button class="switch" onclick="toggle(this)"><i></i></button></div>
+  </div>
+</div>
+</div>
+<div class="info">
+<div class="card">
+<h3>⚡ Chế độ nhanh</h3>
+<p>Chọn một chế độ để mô phỏng nhiều thiết bị hoạt động cùng lúc.</p>
+<div class="modes">
+<button class="mode" onclick="mode('home')">🏠 Ở nhà</button>
+<button class="mode" onclick="mode('night')">🌙 Ban đêm</button>
+<button class="mode" onclick="mode('away')">🚶 Rời nhà</button>
+</div>
+<div id="message" class="alert">Hệ thống đang hoạt động bình thường.</div>
+</div>
+<div class="card">
+<h3>📊 Trạng thái hệ thống</h3>
+<p>Điện năng tiêu thụ hôm nay: <b id="energy">2.35 kWh</b></p>
+<p>Thiết bị hoạt động: <b id="count2">2</b></p>
+<p>Tiết kiệm năng lượng: <b id="save">18%</b></p>
+</div>
+</div>
+</section>
+
+<section id="knowledge">
+<h2 class="section-title">📚 Kiến thức được áp dụng</h2>
+<div class="info">
+<div class="card"><h3>💡 Vật lí</h3><ul><li>Dòng điện và các thiết bị điện.</li><li>Công suất điện và điện năng tiêu thụ.</li><li>Sử dụng điện an toàn, tiết kiệm.</li></ul></div>
+<div class="card"><h3>💻 Tin học</h3><ul><li>HTML tạo cấu trúc website.</li><li>CSS thiết kế giao diện.</li><li>JavaScript tạo tương tác và mô phỏng.</li></ul></div>
+<div class="card"><h3>⚙️ Công nghệ</h3><ul><li>Cảm biến nhiệt độ, ánh sáng, chuyển động.</li><li>Điều khiển thiết bị tự động.</li><li>Hệ thống an ninh và cảnh báo.</li></ul></div>
+<div class="card"><h3>🌱 Ý nghĩa thực tế</h3><ul><li>Tăng sự tiện nghi cho người sử dụng.</li><li>Hỗ trợ phát hiện bất thường.</li><li>Giúp quản lý và tiết kiệm năng lượng.</li></ul></div>
+</div>
+
+<div class="card" style="margin-top:16px">
+<h3>🧮 Tính điện năng tiêu thụ</h3>
+<p>Công thức: <b>A = P × t</b>, trong đó P là công suất (kW), t là thời gian sử dụng (giờ).</p>
+<div class="calc">
+<div><label>Công suất thiết bị (W)</label><input id="power" type="number" value="100"></div>
+<div><label>Thời gian sử dụng (giờ)</label><input id="hours" type="number" value="5"></div>
+</div>
+<button class="btn" style="margin-top:12px" onclick="calculate()">Tính ngay</button>
+<div class="result" id="calcResult">Điện năng tiêu thụ: <b>0.50 kWh</b></div>
+</div>
+</section>
+</main>
+
+<footer>SMART HOME 10 • Sản phẩm học tập mô phỏng ngôi nhà thông minh</footer>
+
+<script>
+function toggle(el){el.classList.toggle('on'); update()}
+function update(){
+ let n=document.querySelectorAll('.switch.on').length;
+ document.getElementById('count').textContent=n;
+ document.getElementById('count2').textContent=n;
+ document.getElementById('energy').textContent=(1.1+n*.42).toFixed(2)+' kWh';
+}
+function mode(type){
+ const s=[...document.querySelectorAll('.switch')];
+ if(type==='away') s.forEach(x=>x.classList.remove('on'));
+ if(type==='night') s.forEach(x=>x.classList.remove('on'));
+ if(type==='night'){s[3].classList.add('on');s[6].classList.add('on')}
+ if(type==='home') s.forEach((x,i)=>{if([0,2,5].includes(i))x.classList.add('on')});
+ const m={home:'Chế độ Ở nhà: các thiết bị cần thiết đã được bật.',night:'Chế độ Ban đêm: giảm thiết bị không cần thiết.',away:'Chế độ Rời nhà: các thiết bị không cần thiết đã được tắt.'};
+ const box=document.getElementById('message');box.textContent=m[type];box.className='alert'+(type==='away'?' warning':'');
+ update();
+}
+function calculate(){
+ const p=Number(document.getElementById('power').value)||0;
+ const h=Number(document.getElementById('hours').value)||0;
+ document.getElementById('calcResult').innerHTML='Điện năng tiêu thụ: <b>'+(p*h/1000).toFixed(2)+' kWh</b>';
+}
+</script>
+</body>
+</html>
